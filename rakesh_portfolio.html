@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Rakesh Kurma | Data Engineer & ML Engineer</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --navy:#1B3A6B;--blue:#1D6FA4;--accent:#2563EB;
+    --light-blue:#EFF6FF;--gray:#6B7280;--dark:#111827;
+    --white:#FFFFFF;--card:#F9FAFB;--border:#E5E7EB;
+  }
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--dark);background:#FAFAFA;line-height:1.6;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* NAV */
+  nav{background:var(--navy);padding:0 5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+  .nav-brand{color:#fff;font-size:1.2rem;font-weight:700;padding:1rem 0;letter-spacing:0.5px;}
+  .nav-links{display:flex;gap:2rem;}
+  .nav-links a{color:rgba(255,255,255,0.8);font-size:0.9rem;padding:1.2rem 0;display:block;transition:color .2s;}
+  .nav-links a:hover{color:#fff;text-decoration:none;}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1a4a8a 50%,#1D6FA4 100%);color:#fff;padding:5rem 5% 4rem;display:flex;gap:3rem;align-items:center;}
+  .hero-text{flex:1;}
+  .hero-tag{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#93C5FD;font-size:0.8rem;padding:0.3rem 0.9rem;border-radius:20px;margin-bottom:1.2rem;letter-spacing:1px;text-transform:uppercase;}
+  .hero h1{font-size:3.2rem;font-weight:800;margin-bottom:0.5rem;letter-spacing:-0.5px;}
+  .hero h2{font-size:1.3rem;font-weight:400;color:#93C5FD;margin-bottom:1.5rem;}
+  .hero p{font-size:1.05rem;color:rgba(255,255,255,0.85);max-width:620px;margin-bottom:2rem;line-height:1.8;}
+  .hero-badges{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2rem;}
+  .badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#E0F2FE;padding:0.3rem 0.85rem;border-radius:20px;font-size:0.8rem;}
+  .cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{background:var(--accent);color:#fff;padding:0.75rem 1.8rem;border-radius:8px;font-weight:600;font-size:0.95rem;transition:background .2s;}
+  .btn-primary:hover{background:#1D4ED8;text-decoration:none;}
+  .btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:0.75rem 1.8rem;border-radius:8px;font-weight:600;font-size:0.95rem;transition:all .2s;}
+  .btn-outline:hover{background:rgba(255,255,255,0.1);text-decoration:none;}
+  .hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.2);}
+  .stat{text-align:center;}
+  .stat-num{font-size:2rem;font-weight:800;color:#fff;}
+  .stat-label{font-size:0.8rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.5px;}
+
+  /* SECTIONS */
+  section{padding:4rem 5%;}
+  .section-header{text-align:center;margin-bottom:3rem;}
+  .section-header h2{font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:0.5rem;}
+  .section-header p{color:var(--gray);font-size:1.05rem;}
+  .section-line{width:60px;height:4px;background:var(--accent);border-radius:2px;margin:0.8rem auto 0;}
+
+  /* SKILLS */
+  .skills-bg{background:var(--light-blue);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+  .skill-card{background:#fff;border-radius:12px;padding:1.5rem;border:1px solid var(--border);transition:box-shadow .2s;}
+  .skill-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+  .skill-icon{font-size:1.8rem;margin-bottom:0.8rem;}
+  .skill-card h3{font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:0.7rem;text-transform:uppercase;letter-spacing:0.5px;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+  .skill-tag{background:var(--light-blue);color:var(--accent);padding:0.25rem 0.65rem;border-radius:20px;font-size:0.75rem;font-weight:500;}
+
+  /* EXPERIENCE */
+  .timeline{position:relative;padding-left:2rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--blue));}
+  .tl-item{position:relative;margin-bottom:2.5rem;}
+  .tl-dot{position:absolute;left:-2.45rem;top:0.4rem;width:14px;height:14px;background:var(--accent);border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 3px var(--accent);}
+  .tl-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:box-shadow .2s;}
+  .tl-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+  .tl-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;}
+  .tl-title{font-size:1.05rem;font-weight:700;color:var(--dark);}
+  .tl-company{color:var(--accent);font-weight:600;}
+  .tl-date{color:var(--gray);font-size:0.85rem;background:var(--light-blue);padding:0.2rem 0.7rem;border-radius:20px;}
+  .tl-loc{color:var(--gray);font-size:0.85rem;margin-bottom:0.8rem;}
+  .tl-bullets{list-style:none;padding:0;}
+  .tl-bullets li{padding:0.25rem 0 0.25rem 1.2rem;position:relative;font-size:0.9rem;color:#374151;}
+  .tl-bullets li::before{content:'\25B8';position:absolute;left:0;color:var(--accent);}
+  .tl-stack{margin-top:0.8rem;font-size:0.78rem;color:var(--gray);font-style:italic;background:var(--card);padding:0.4rem 0.8rem;border-radius:6px;}
+
+  /* PROJECTS */
+  .projects-bg{background:var(--card);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem;}
+  .proj-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .25s,transform .25s;}
+  .proj-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.1);transform:translateY(-3px);}
+  .proj-top{background:linear-gradient(135deg,var(--navy),var(--blue));padding:1.5rem;color:#fff;}
+  .proj-icon{font-size:2rem;margin-bottom:0.5rem;}
+  .proj-top h3{font-size:1.05rem;font-weight:700;margin-bottom:0.3rem;}
+  .proj-top p{font-size:0.82rem;opacity:0.85;line-height:1.5;}
+  .proj-body{padding:1.2rem;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+  .proj-tag{background:var(--light-blue);color:var(--accent);padding:0.2rem 0.6rem;border-radius:20px;font-size:0.72rem;font-weight:600;}
+  .proj-links{display:flex;gap:1rem;}
+  .proj-link{font-size:0.85rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:0.3rem;}
+
+  /* EDUCATION & CERTS */
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+  .edu-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;}
+  .edu-degree{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:0.2rem;}
+  .edu-school{color:var(--accent);font-size:0.9rem;font-weight:600;margin-bottom:0.3rem;}
+  .edu-meta{color:var(--gray);font-size:0.82rem;}
+  .edu-gpa{display:inline-block;margin-top:0.5rem;background:#D1FAE5;color:#065F46;padding:0.2rem 0.7rem;border-radius:20px;font-size:0.78rem;font-weight:600;}
+  .cert-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;}
+  .cert-icon{font-size:1.8rem;}
+  .cert-name{font-size:0.9rem;font-weight:700;color:var(--dark);}
+  .cert-issuer{font-size:0.8rem;color:var(--gray);}
+  .cert-badge{margin-top:0.3rem;display:inline-block;background:#FEF3C7;color:#92400E;padding:0.15rem 0.6rem;border-radius:20px;font-size:0.72rem;font-weight:600;}
+
+  /* CONTACT */
+  .contact-bg{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;}
+  .contact-bg .section-header h2{color:#fff;}
+  .contact-bg .section-header p{color:rgba(255,255,255,0.8);}
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;max-width:900px;margin:0 auto;}
+  .contact-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:1.5rem;text-align:center;transition:background .2s;}
+  .contact-card:hover{background:rgba(255,255,255,0.18);}
+  .contact-card .icon{font-size:1.8rem;margin-bottom:0.5rem;}
+  .contact-card .label{font-size:0.75rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.3rem;}
+  .contact-card .value{font-size:0.9rem;color:#fff;font-weight:600;word-break:break-all;}
+
+  footer{text-align:center;padding:2rem;background:var(--navy);color:rgba(255,255,255,0.5);font-size:0.85rem;}
+
+  @media(max-width:768px){
+    .hero{flex-direction:column;padding:3rem 5%;}
+    .hero h1{font-size:2.2rem;}
+    .hero-stats{gap:1.5rem;}
+    .nav-links{gap:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Rakesh Kurma</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Open to Opportunities</div>
+    <h1>Rakesh Kurma</h1>
+    <h2>Data Engineer · Data Analyst · Data Scientist · ML Engineer</h2>
+    <p>5+ years building production-grade data pipelines, cloud analytics platforms, and ML systems across healthcare and enterprise. I turn raw data into scalable intelligence — from Spark pipelines processing 10GB/day to ML models driving real business decisions.</p>
+    <div class="hero-badges">
+      <span class="badge">Apache Spark / PySpark</span>
+      <span class="badge">Databricks</span>
+      <span class="badge">Snowflake</span>
+      <span class="badge">AWS Glue · S3 · Redshift</span>
+      <span class="badge">Azure Synapse · ADF</span>
+      <span class="badge">Python · SQL</span>
+      <span class="badge">dbt · Airflow · Kafka</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/Rakesh18012" target="_blank">🔗 GitHub Portfolio</a>
+      <a class="btn-outline" href="https://linkedin.com/in/rakesh-kurma-54a4a1222" target="_blank">in LinkedIn</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">10GB+</div><div class="stat-label">Daily Data Processed</div></div>
+      <div class="stat"><div class="stat-num">80%</div><div class="stat-label">Workflow Automation</div></div>
+      <div class="stat"><div class="stat-num">50%</div><div class="stat-label">Faster Reporting</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="section-header">
+    <h2>Technical Skills</h2>
+    <p>Full-stack data expertise — from pipelines to predictions</p>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <h3>Big Data & Compute</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Apache Spark</span><span class="skill-tag">PySpark</span>
+        <span class="skill-tag">Databricks</span><span class="skill-tag">Hadoop</span>
+        <span class="skill-tag">Hive</span><span class="skill-tag">Structured Streaming</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <h3>Cloud — AWS</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS Glue</span><span class="skill-tag">Amazon S3</span>
+        <span class="skill-tag">Amazon Redshift</span><span class="skill-tag">AWS Lambda</span>
+        <span class="skill-tag">AWS Kinesis</span><span class="skill-tag">AWS EMR</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔷</div>
+      <h3>Cloud — Azure</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Azure Synapse</span><span class="skill-tag">Azure Data Factory</span>
+        <span class="skill-tag">Azure Databricks</span><span class="skill-tag">Azure Blob</span>
+        <span class="skill-tag">BigQuery</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🏗️</div>
+      <h3>ETL & Orchestration</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Apache Airflow</span><span class="skill-tag">dbt</span>
+        <span class="skill-tag">Snowflake</span><span class="skill-tag">Talend</span>
+        <span class="skill-tag">Fivetran</span><span class="skill-tag">Kafka</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <h3>Machine Learning</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Scikit-learn</span><span class="skill-tag">XGBoost</span>
+        <span class="skill-tag">TensorFlow</span><span class="skill-tag">MLflow</span>
+        <span class="skill-tag">Keras</span><span class="skill-tag">Pandas / NumPy</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">SQL</span>
+        <span class="skill-tag">Scala</span><span class="skill-tag">PySpark</span>
+        <span class="skill-tag">R</span><span class="skill-tag">Java</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <h3>Analytics & BI</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span><span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Matplotlib</span><span class="skill-tag">Seaborn</span>
+        <span class="skill-tag">Great Expectations</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🛠️</div>
+      <h3>DevOps & Tools</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">GitHub Actions</span><span class="skill-tag">Terraform</span>
+        <span class="skill-tag">Jenkins</span><span class="skill-tag">Linux</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <h2>Work Experience</h2>
+    <p>5+ years delivering scalable data solutions across healthcare and enterprise</p>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div><span class="tl-title">Data Engineer</span> · <span class="tl-company">Sarral</span></div>
+          <span class="tl-date">Aug 2025 – Present</span>
+        </div>
+        <div class="tl-loc">📍 Atlanta, GA</div>
+        <ul class="tl-bullets">
+          <li>Architected Databricks workflows using Apache Spark & PySpark on multi-terabyte datasets</li>
+          <li>Reduced Snowflake/Redshift query time by 40% with SQL tuning and optimization</li>
+          <li>Built event-driven AWS Glue + Lambda pipelines from 10+ data sources via Amazon S3</li>
+          <li>Increased pipeline reliability 35% using Great Expectations + Airflow data quality checks</li>
+          <li>Delivered AI-driven features using Azure Synapse, ADF, BigQuery, and Python</li>
+        </ul>
+        <div class="tl-stack">Stack: Apache Spark, PySpark, Databricks, AWS Glue, S3, Redshift, Snowflake, Azure Synapse, ADF, Great Expectations, Power BI, Docker</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div><span class="tl-title">Graduate Data Engineering Associate</span> · <span class="tl-company">St. Francis College</span></div>
+          <span class="tl-date">Jan 2024 – May 2025</span>
+        </div>
+        <div class="tl-loc">📍 Brooklyn, NY</div>
+        <ul class="tl-bullets">
+          <li>Built deep learning models (TensorFlow/Keras) achieving 94% classification accuracy</li>
+          <li>Created Tableau & Python data visualization dashboards from large-scale datasets</li>
+          <li>Designed ETL pipeline labs and mentored 60+ grad students in SQL & cloud engineering</li>
+          <li>Automated Python workflows saving 4+ hours/week in administrative overhead</li>
+        </ul>
+        <div class="tl-stack">Stack: Python, SQL, TensorFlow, Keras, Tableau, Matplotlib, Seaborn, Apache Spark</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div><span class="tl-title">Data Engineer</span> · <span class="tl-company">Innovaccer</span></div>
+          <span class="tl-date">Feb 2021 – Aug 2023</span>
+        </div>
+        <div class="tl-loc">📍 India (Remote → San Francisco)</div>
+        <ul class="tl-bullets">
+          <li>Built Apache Spark pipelines processing 10GB+ daily healthcare data at 99.9% uptime</li>
+          <li>Automated ETL with Airflow DAGs, cutting manual work by 80% and incidents by 60%</li>
+          <li>Migrated 50+ ETL jobs to dbt + Snowflake, reducing compute costs by 30%</li>
+          <li>Optimized Power BI dashboards — 50% faster load times for C-suite clinical reporting</li>
+          <li>Integrated Salesforce & healthcare APIs via Python REST clients into Snowflake warehouse</li>
+        </ul>
+        <div class="tl-stack">Stack: Apache Spark, PySpark, Python, SQL, Airflow, dbt, Snowflake, Redshift, Kafka, Kinesis, Power BI, Docker, Jenkins</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div><span class="tl-title">Data Engineer Intern</span> · <span class="tl-company">Innovaccer</span></div>
+          <span class="tl-date">Apr 2020 – Jan 2021</span>
+        </div>
+        <div class="tl-loc">📍 Noida, India</div>
+        <ul class="tl-bullets">
+          <li>Built a Data Quality Dashboard saving 150+ hours/quarter of re-ingestion work</li>
+          <li>Optimized 30+ SQL queries achieving 5x reduction in average execution time</li>
+          <li>Enforced data integrity SLAs across a platform serving 50+ hospital networks</li>
+        </ul>
+        <div class="tl-stack">Stack: Python, SQL, Apache Spark, PySpark, Power BI</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects-bg">
+  <div class="section-header">
+    <h2>Featured Projects</h2>
+    <p>Real-world data engineering, analytics, and ML systems — all on GitHub</p>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">🏥</div>
+        <h3>Healthcare Data Pipeline & Analytics Platform</h3>
+        <p>End-to-end ETL ingesting HL7/FHIR data from 10+ hospital APIs into Snowflake with dbt transforms and Power BI dashboards</p>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag">Apache Spark</span><span class="proj-tag">Airflow</span>
+          <span class="proj-tag">Snowflake</span><span class="proj-tag">dbt</span>
+          <span class="proj-tag">Power BI</span><span class="proj-tag">Great Expectations</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/Rakesh18012/healthcare-data-pipeline" target="_blank">⭐ View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">📡</div>
+        <h3>Real-Time E-Commerce Streaming Analytics</h3>
+        <p>Kafka → PySpark Structured Streaming → Redshift pipeline processing 100K+ events/hour with fraud detection and Grafana monitoring</p>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag">Apache Kafka</span><span class="proj-tag">PySpark Streaming</span>
+          <span class="proj-tag">Amazon Redshift</span><span class="proj-tag">Grafana</span><span class="proj-tag">AWS SNS</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/Rakesh18012/realtime-analytics-engine" target="_blank">⭐ View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">🤖</div>
+        <h3>ML Churn Prediction Pipeline & Feature Store</h3>
+        <p>Full ML pipeline with XGBoost (AUC: 0.91), MLflow experiment tracking, and versioned feature store on AWS S3</p>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span><span class="proj-tag">XGBoost</span>
+          <span class="proj-tag">MLflow</span><span class="proj-tag">Scikit-learn</span><span class="proj-tag">AWS S3</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/Rakesh18012/churn-prediction-ml" target="_blank">⭐ View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">🔍</div>
+        <h3>Automated Data Observability Framework</h3>
+        <p>Plug-and-play framework running 200+ daily data quality checks with real-time Slack alerting, reducing MTTD from 4hrs to 10mins</p>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag">Great Expectations</span><span class="proj-tag">Apache Airflow</span>
+          <span class="proj-tag">Python</span><span class="proj-tag">Slack API</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/Rakesh18012/data-quality-framework" target="_blank">⭐ View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <h2>Education & Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid" style="margin-bottom:2rem;">
+    <div class="edu-card">
+      <div class="edu-degree">M.S. Information Technology</div>
+      <div class="edu-school">St. Francis College, New York</div>
+      <div class="edu-meta">Aug 2023 – May 2025</div>
+      <div class="edu-meta" style="margin-top:0.4rem;">Coursework: Deep Learning & AI, Data Visualization, Cloud Computing, Data Mining & Analytics</div>
+      <span class="edu-gpa">GPA: 3.85 / 4.0</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">B.Tech Computer Science</div>
+      <div class="edu-school">St. Martins Engineering College, India</div>
+      <div class="edu-meta">Jun 2018 – May 2021</div>
+    </div>
+  </div>
+  <div class="edu-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">Microsoft Certified: Azure Administrator Associate (AZ-104)</div>
+        <div class="cert-issuer">Microsoft</div>
+        <span class="cert-badge">In Progress</span>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🔥</div>
+      <div>
+        <div class="cert-name">Databricks Certified Associate Developer — Apache Spark</div>
+        <div class="cert-issuer">Databricks</div>
+        <span class="cert-badge">In Progress</span>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">AWS Certified Data Engineer – Associate</div>
+        <div class="cert-issuer">Amazon Web Services</div>
+        <span class="cert-badge">In Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="section-header">
+    <h2>Let's Connect</h2>
+    <p>Open to Data Engineer, Senior Data Engineer, Data Analyst, Data Scientist & ML Engineer roles</p>
+    <div class="section-line" style="background:rgba(255,255,255,0.5);"></div>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:rakeshkurma31@gmail.com" class="contact-card">
+      <div class="icon">✉️</div>
+      <div class="label">Email</div>
+      <div class="value">rakeshkurma31@gmail.com</div>
+    </a>
+    <a href="https://linkedin.com/in/rakesh-kurma-54a4a1222" target="_blank" class="contact-card">
+      <div class="icon">💼</div>
+      <div class="label">LinkedIn</div>
+      <div class="value">rakesh-kurma-54a4a1222</div>
+    </a>
+    <a href="https://github.com/Rakesh18012" target="_blank" class="contact-card">
+      <div class="icon">🐙</div>
+      <div class="label">GitHub</div>
+      <div class="value">github.com/Rakesh18012</div>
+    </a>
+    <div class="contact-card">
+      <div class="icon">📍</div>
+      <div class="label">Location</div>
+      <div class="value">Atlanta, GA · Open to Remote</div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Rakesh Kurma · Data Engineer · Built with purpose 🚀</footer>
+
+</body>
+</html>
